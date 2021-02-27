@@ -39,10 +39,12 @@ const styles = StyleSheet.create({
   },
   mainContainerMobile: {
     position: "absolute",
-    width: "100vw",
-    minWidth: "100%",
     top: 0,
     left: 0
+  },
+  mainContainerExpanded: {
+    width: "100%",
+    minWidth: "100vh"
   },
   menuItemList: {
     marginTop: 52
@@ -97,7 +99,12 @@ class SidebarComponent extends React.Component {
       <div style={{ position: "relative" }}>
         <Row
           className={css(styles.mainContainer)}
-          breakpoints={{ 768: css(styles.mainContainerMobile) }}
+          breakpoints={{
+            768: css(
+              styles.mainContainerMobile,
+              expanded && styles.mainContainerExpanded
+            )
+          }}
         >
           {isMobile && !expanded && this.renderBurger()}
           <Column
